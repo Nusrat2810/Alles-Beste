@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- site metas -->
+    <title>Home</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <!-- style css -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/custom_style.css')}}">
+</head>
+
+<!-- body -->
+<body">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" id="p" href="{{url_for('home')}}">Alles Beste</a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('home')}}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('profile')}}">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+
+        <h2 class="h2">Grammer</h2>
+
+        <div class="container" style="margin:auto">
+            <img src="{{url_for('static', filename='images/top_icon.png')}}" alt="Avatar" style="width:90px">
+            <p><span> Sentence structure</span></p>
+            <p>In basic sentence structure subject is always either in 1st or 3rd postion and verb is always at 2nd postion</p>
+        </div>
+        <hr>
+        <div class="container" style="margin:auto">
+            <img src="{{url_for('static', filename='images/top_icon.png')}}" alt="Avatar" style="width:90px">
+            <p><span> Modal Verb</span></p>
+            <p>If there is another verb in a sententence with modal verb then the second one sits at last postion</p>
+        </div>
+        <hr>
+    </body>

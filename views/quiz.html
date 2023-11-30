@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <!-- site metas -->
+    <title>Home</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <!-- style css -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/custom_style.css')}}">
+</head>
+
+<!-- body -->
+<body">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" id="p" href="{{url_for('home')}}">Alles Beste</a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('home')}}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('profile')}}">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <h1 class="h2">Hello!! Let's Play a game! Try to guess correctly the article of the following Nouns!</h1>
+    <div class="grammer">
+        <ul style="list-style-type: none;">
+            <form action="{{url_for('quiz')}}" method="post">
+
+                {% for question in content[0] %}
+                    {% set c = loop.index%}
+                    <li>
+                        <div class="container" style="margin: auto;">
+                            {{ question }} {% print(": ")%}
+                            {% for option in content[1] %}
+                                <input type="checkbox" name="{{c}}" id=""> {{option}}</input>
+                            {% endfor %}
+
+                        </div>
+                        <hr>
+                    </li>
+
+                {% endfor %}
+                <input type="submit" value="Submit">
+            </form>
+        </ul>
+    </div>
+    </body>
