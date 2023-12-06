@@ -41,7 +41,7 @@ with app.app_context():
 def home():
     if 'name' in session:
         user = User.query.filter_by(email=session['email']).first()
-        return render_template("index.html", user=user)
+        return render_template("index.html", user=user, pop_up = False)
     else:
         return render_template("login.html", error="login first")
 
@@ -122,7 +122,9 @@ def quiz():
             if selected_options[i] == correct_answer[i]:
                 score += 1
 
-        return render_template('test.html', test = score)
+        pop_up = True
+
+        return render_template('index.html', result = score, questions = len(questions), pop_up = pop_up)
 
     else:
      return render_template("quiz.html", content = [questions,options])

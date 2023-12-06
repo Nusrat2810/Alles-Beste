@@ -5,7 +5,7 @@
     <!-- basic -->
     <meta charset="utf-8">
     <!-- site metas -->
-    <title>Home</title>
+    <title>Result</title>
     <!-- bootstrap css -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
     <!-- style css -->
@@ -32,30 +32,31 @@
             </li>
         </ul>
     </nav>
-    
 
-    <h1 class="h2">Hello!! Let's Play a game! Try to guess correctly the article of the following Nouns!</h1>
-    <div class="grammer">
-        <ul style="list-style-type: none;">
-            <form action="{{url_for('quiz')}}" method="post">
 
-                {% for question in content[0] %}
-                {% set c = loop.index%}
-                <li>
-                    <div class="container" style="margin: auto;">
-                        {{ question }} {% print(": ")%}
-                        {% for option in content[1] %}
-                        <input type="checkbox" name="options" value="{{option}}"> {{option}}</input>
-                        {% endfor %}
+    <h1 class="h2"></h1>
+        {% if pop_up %}
+        <div id="popup" class="popup">
+            <p>Congratuations!! you scored {{result}} out of {{questions}}</p>
+            <button onclick="hidePopup()">Close</button>
+        </div>
 
-                    </div>
-                    <hr>
-                </li>
+        <script>
+            // Show the popup when the page loads
+            document.addEventListener('DOMContentLoaded', function() {
+                showPopup();
+            });
 
-                {% endfor %}
-                <!-- <input type="hidden" name="count_variable" value="10"> -->
-                <input type="submit" value="Submit">
-            </form>
-        </ul>
-    </div>
+            function showPopup() {
+                // Show the popup
+                document.getElementById('popup').style.display = 'block';
+            }
+
+            function hidePopup() {
+                // Hide the popup
+                document.getElementById('popup').style.display = 'none';
+            }
+        </script>
+    {% endif %}
+        
     </body>
