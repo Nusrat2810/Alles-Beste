@@ -8,6 +8,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SECRET_KEY'] = 'thisisakey'
 db = SQLAlchemy(app)
 
+
+questions = (('Tisch'),('Laptop'),('Wohnung'),('Handy'))
+options = (('der'),('die'),('das'),('die - PL'))
+correct_answer = (('der'),('der'),('die'),('das'))
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True )
     name = db.Column(db.String(100), nullable = False )
@@ -28,19 +33,9 @@ class User(db.Model):
         return check
 
     
-
-
 with app.app_context():
     db.create_all()
 
-
-
-questions = (('Tisch'),('Laptop'),('Wohnung'),('Handy'))
-options = (('A. der'),('B. die'),('C. das'),('D. die - PL'))
-correct_answer = (('A'),('A'),('B'),('C'))
-guesses = []
-score = 0
-q_number = 0
 
 @app.route("/")
 def home():
@@ -120,11 +115,17 @@ def grammer():
 
 @app.route("/quiz",  methods = ['GET', 'POST'])
 def quiz():
+    score = 0
     if request.method == 'POST':
-        pass
+        selected_options = request.form.getlist('options')
+        for i in range(len(selected_options)):
+            if selected_options[i] == correct_answer[i]:
+                score += 1
+
+        return render_template('test.html', test = score)
 
     else:
-     return render_template("quiz.html", content = [questions,options], i = q_number)
+     return render_template("quiz.html", content = [questions,options])
 
 
 

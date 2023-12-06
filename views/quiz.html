@@ -45,7 +45,7 @@
                         <div class="container" style="margin: auto;">
                             {{ question }} {% print(": ")%}
                             {% for option in content[1] %}
-                                <input type="checkbox" name="{{c}}" id=""> {{option}}</input>
+                                <input type="checkbox" name="options" value="{{option}}"> {{option}}</input>
                             {% endfor %}
 
                         </div>
@@ -53,6 +53,7 @@
                     </li>
 
                 {% endfor %}
+                <!-- <input type="hidden" name="count_variable" value="10"> -->
                 <input type="submit" value="Submit">
             </form>
         </ul>
