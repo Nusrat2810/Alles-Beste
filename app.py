@@ -41,7 +41,7 @@ with app.app_context():
 def home():
     if 'name' in session:
         user = User.query.filter_by(email=session['email']).first()
-        return render_template("index.html", user=user, content = [questions,options,q_number])
+        return render_template("index.html", user=user)
     else:
         return render_template("login.html", error="login first")
 
